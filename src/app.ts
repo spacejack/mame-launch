@@ -1,4 +1,5 @@
 import {Gtk, GLib} from './gi'
+import romdb from './roms-db'
 
 function hasDarkBackground (widget: any) {
 	const style = widget.get_style_context()
@@ -7,10 +8,10 @@ function hasDarkBackground (widget: any) {
 	return bgAvg < 0.5
 }
 
-function createLauncherButton (rom: string, onclick?: (rom: string) => void) {
-	const button = new Gtk.Button({label: rom})
+function createLauncherButton (rom: {name: string, label: string}, onclick?: (rom: string) => void) {
+	const button = new Gtk.Button({label: rom.label, hexpand: true})
 	button.connect('clicked', () => {
-		onclick && onclick(rom)
+		onclick && onclick(rom.name)
 	})
 	return button
 }
@@ -52,8 +53,8 @@ function App (roms: string[], title: string, subtitle?: string) {
 		appWindow = new Gtk.ApplicationWindow({
 			application,
 			title,
-			default_height: 640,
-			default_width: 860,
+			default_height: 660,
+			default_width: 960,
 			border_width: 0,
 			window_position: Gtk.WindowPosition.CENTER
 		})
@@ -63,11 +64,12 @@ function App (roms: string[], title: string, subtitle?: string) {
 		// Add container for games
 		const scroll = new Gtk.ScrolledWindow({vexpand: true})
 		const grid = new Gtk.Grid({column_spacing: 6, margin: 15, row_spacing: 6})
-		const numCols = 8
+		const numCols = 6
 
 		for (let i = 0; i < roms.length; ++i) {
+			const rom = roms[i]
 			grid.attach(
-				createLauncherButton(roms[i], launchROM),
+				createLauncherButton({name: rom, label: romdb[rom] || rom}, launchROM),
 				i % numCols, Math.floor(i / numCols), 1, 1
 			)
 		}

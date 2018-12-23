@@ -29,7 +29,7 @@
     "no-trailing-whitespace": true,
     "no-unused-expression": false,
     "no-unused-variable": true,
-    "object-literal-key-quotes": [true, "as-needed"],
+    "object-literal-key-quotes": false,
     "object-literal-sort-keys": false,
     "one-line": [true, "check-open-brace", "check-whitespace"],
     "one-variable-per-declaration": false,
