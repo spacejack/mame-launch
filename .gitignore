@@ -1,0 +1,6 @@
+/node_modules
+/tmp
+/history
+*.log
+mame-launch
+mame-launch.js

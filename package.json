@@ -1,0 +1,28 @@
+{
+  "name": "mame-launch",
+  "version": "0.1.0",
+  "description": "A Simple Mame Launcher",
+  "main": "index.js",
+  "scripts": {
+    "compile:app-ts": "browserify --debug src/main.ts -p [ tsify --project src/tsconfig.json ] -o mame-launch.js",
+    "build:app-ts": "browserify src/main.ts -p [ tsify --project src/tsconfig.json ] -o mame-launch.js",
+    "build-exe": "echo '#!/usr/bin/env gjs\\n' | cat - mame-launch.js > mame-launch && chmod 755 mame-launch",
+    "clean:app-ts": "rm -f mame-launch.js",
+    "clean:exe": "rm -f mame-launch",
+    "compile": "run-s compile:*",
+    "build": "run-s build:* build-exe",
+    "clean": "run-s clean:*"
+  },
+  "keywords": [],
+  "author": "spacejack",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^16.2.3",
+    "npm-run-all": "^4.1.5",
+    "tsify": "^4.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.2.2",
+    "uglify-js": "^3.4.9"
+  }
+}

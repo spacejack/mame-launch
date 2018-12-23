@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2015"],
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "files": ["main.ts"],
+  "compileOnSave": false,
+  "buildOnSave": false
+}
